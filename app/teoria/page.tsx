@@ -88,7 +88,7 @@ export default function TeoriaPage() {
                     <Alert>
                       <Info className="h-4 w-4" />
                       <AlertDescription>
-                        <strong>Idea Clave:</strong> Encontrar la raíz de <MathBlock>{"f(x)"}</MathBlock> es lo mismo que resolver la ecuación <MathBlock>{"f(x) = 0."}</MathBlock>
+                        <strong>Idea Clave:</strong> Encontrar la raíz de <MathBlock>{"f(x)"}</MathBlock> es lo mismo que resolver la ecuación <MathBlock>{"f(x) = 0"}</MathBlock>
                       </AlertDescription>
                     </Alert>
                     <Card>
