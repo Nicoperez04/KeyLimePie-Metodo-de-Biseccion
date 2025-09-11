@@ -1,9 +1,9 @@
 "use client"
-
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-// import { ThemeToggle } from "@/components/theme-toggle"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
 // import { Calculator, BookOpen, FlaskConical, HelpCircle, Cpu } from 'lucide-react'
 
@@ -19,13 +19,18 @@ export function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-border dark:border-white/20">
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">KLP</span>
-          </div>
-          <span className="font-bold text-lg">KeyLimePie – Método de Bisección</span>
+          <Image
+            src="/logo.png"
+            alt="KeyLimePie Logo"
+            width={32}
+            height={32}
+            className="rounded-full"
+            priority
+          />
+          <span className="font-bold text-lg">KeyLimePie | Método de Bisección</span>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-1">
@@ -49,7 +54,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="flex items-center space-x-2">{/* <ThemeToggle /> */}</div>
+        <div className="flex items-center space-x-2"><ThemeToggle /></div>
       </div>
     </header>
   )

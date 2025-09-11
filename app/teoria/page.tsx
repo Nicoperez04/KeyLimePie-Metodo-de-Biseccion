@@ -18,8 +18,8 @@ export default function TeoriaPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-16 px-4 text-center">
-          <div className="absolute inset-0 gradient-lime opacity-10"></div>
+        <section className="relative py-16 px-4 text-center dark:bg-black">
+          <div className="absolute inset-0 gradient-lime opacity-10 dark:hidden"></div>
           <PageContainer className="relative z-10">
             <div className="max-w-4xl mx-auto space-y-6">
               <Badge variant="secondary" className="mb-4">
@@ -37,16 +37,7 @@ export default function TeoriaPage() {
         <section className="py-12 px-4">
           <PageContainer>
             <div className="max-w-4xl mx-auto">
-              <div className="mb-8 p-4 bg-muted/30 rounded-lg">
-                <h3 className="font-semibold mb-2">Test de renderizado matemático:</h3>
-                <p>
-                  Inline: <MathBlock>x^2 + 1 = 0</MathBlock>
-                </p>
-                <p>Display:</p>
-                <MathBlock display>f(x) = x^3 - 2x - 5</MathBlock>
-              </div>
-
-              <Accordion type="multiple" className="space-y-4">
+              <Accordion type="multiple" className="space-y-4" defaultValue={["raiz"]}>
                 {/* Raíz de una función */}
                 <AccordionItem value="raiz" className="border rounded-2xl px-6">
                   <AccordionTrigger className="text-left">
@@ -76,7 +67,7 @@ export default function TeoriaPage() {
                           tal que:
                         </p>
                         <div className="bg-background border rounded-lg p-4 text-center">
-                          <MathBlock display="f(x_i) = 0" />
+                          <MathBlock display>f(x_i) = 0</MathBlock>
                         </div>
                       </CardContent>
                     </Card>
@@ -87,14 +78,14 @@ export default function TeoriaPage() {
                         <li className="flex items-start space-x-2">
                           <span className="text-primary">•</span>
                           <span>
-                            Polinomios: <MathBlock>x^2 - 2 = 0</MathBlock> tiene raíces en{" "}
-                            <MathBlock>x = \pm\sqrt{2}</MathBlock>
+                            Polinomios: <MathBlock>{"x^2 - 2 = 0"}</MathBlock> tiene raíces en{" "}
+                            <MathBlock>{"x = \\pm\\sqrt{2}"}</MathBlock>
                           </span>
                         </li>
                         <li className="flex items-start space-x-2">
                           <span className="text-primary">•</span>
                           <span>
-                            Ecuaciones implícitas: <MathBlock>\tan(x) - x = 0</MathBlock>
+                            Ecuaciones implícitas: <MathBlock>{"\\tan(x) - x = 0"}</MathBlock>
                           </span>
                         </li>
                       </ul>
@@ -120,7 +111,7 @@ export default function TeoriaPage() {
                         </CardHeader>
                         <CardContent>
                           <div className="text-center">
-                            <MathBlock display="f(a)" />
+                            <MathBlock display>f(a)</MathBlock>
                             <p className="text-sm text-muted-foreground mt-2">existe</p>
                           </div>
                         </CardContent>
@@ -132,7 +123,7 @@ export default function TeoriaPage() {
                         </CardHeader>
                         <CardContent>
                           <div className="text-center">
-                            <MathBlock display="\lim_{x \to a} f(x)" />
+                            <MathBlock display>{"\\lim_{x \\to a} f(x)"}</MathBlock>
                             <p className="text-sm text-muted-foreground mt-2">existe</p>
                           </div>
                         </CardContent>
@@ -144,7 +135,7 @@ export default function TeoriaPage() {
                         </CardHeader>
                         <CardContent>
                           <div className="text-center">
-                            <MathBlock display="\lim_{x \to a} f(x) = f(a)" />
+                            <MathBlock display>{"\\lim_{x \\to a} f(x) = f(a)"}</MathBlock>
                             <p className="text-sm text-muted-foreground mt-2">son iguales</p>
                           </div>
                         </CardContent>
@@ -172,11 +163,11 @@ export default function TeoriaPage() {
                       <CardContent className="space-y-4">
                         <p>Si f es continua en [a,b] y:</p>
                         <div className="bg-background border rounded-lg p-4 text-center">
-                          <MathBlock display="f(a) \cdot f(b) < 0" />
+                          <MathBlock display>f(a) \cdot f(b) &lt; 0</MathBlock>
                         </div>
                         <p>Entonces existe p ∈ (a,b) tal que:</p>
                         <div className="bg-background border rounded-lg p-4 text-center">
-                          <MathBlock display="f(p) = 0" />
+                          <MathBlock display>f(p) = 0</MathBlock>
                         </div>
                       </CardContent>
                     </Card>
@@ -185,7 +176,7 @@ export default function TeoriaPage() {
                       <Info className="h-4 w-4" />
                       <AlertDescription>
                         <strong>Precondición clave:</strong> Este teorema es la base fundamental que permite aplicar el
-                        método de bisección. Sin el cambio de signo <MathBlock display="f(a) \cdot f(b) < 0" />, no
+                        método de bisección. Sin el cambio de signo <MathBlock>{"f(a) \\cdot f(b) < 0"}</MathBlock>, no
                         podemos garantizar la existencia de una raíz en el intervalo.
                       </AlertDescription>
                     </Alert>
@@ -209,7 +200,7 @@ export default function TeoriaPage() {
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <div className="inline-block cursor-help">
-                                <MathBlock display="m_k = \frac{a_k + b_k}{2}" />
+                                <MathBlock display>{"m_k = \\frac{a_k + b_k}{2}"}</MathBlock>
                               </div>
                             </TooltipTrigger>
                             <TooltipContent>
@@ -228,7 +219,7 @@ export default function TeoriaPage() {
                                 1
                               </span>
                               <span>
-                                Verificar <MathBlock display="f(a) \cdot f(b) < 0" />
+                                Verificar <MathBlock>{"f(a) \\cdot f(b) < 0"}</MathBlock>
                               </span>
                             </li>
                             <li className="flex items-start space-x-2">
@@ -236,7 +227,7 @@ export default function TeoriaPage() {
                                 2
                               </span>
                               <span>
-                                Calcular <MathBlock display="m = \frac{a + b}{2}" />
+                                Calcular <MathBlock>{"m = \\frac{a + b}{2}"}</MathBlock>
                               </span>
                             </li>
                             <li className="flex items-start space-x-2">
@@ -266,14 +257,14 @@ export default function TeoriaPage() {
                             <Card className="p-3 bg-muted/30">
                               <p className="font-medium mb-2">Si sign(f(a)) = sign(f(m)):</p>
                               <div className="text-center">
-                                <MathBlock display="a = m" />
+                                <MathBlock display>a = m</MathBlock>
                               </div>
                             </Card>
 
                             <Card className="p-3 bg-muted/30">
                               <p className="font-medium mb-2">Si no:</p>
                               <div className="text-center">
-                                <MathBlock display="b = m" />
+                                <MathBlock display>b = m</MathBlock>
                               </div>
                             </Card>
                           </div>
@@ -299,7 +290,7 @@ export default function TeoriaPage() {
                       <CardContent>
                         <p className="mb-4">Después de n iteraciones, el error está acotado por:</p>
                         <div className="bg-background border rounded-lg p-4 text-center">
-                          <MathBlock display="|p_n - p| \leq \frac{b - a}{2^n}" />
+                          <MathBlock display>{"|p_n - p| \\leq \\frac{b - a}{2^n}"}</MathBlock>
                         </div>
                         <p className="mt-4 text-sm text-muted-foreground">
                           Donde p es la raíz exacta y p_n es la aproximación en la iteración n.
@@ -377,13 +368,13 @@ export default function TeoriaPage() {
 
               {/* Navigation to Part II */}
               <div className="mt-12 text-center">
-                <Card className="bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
+                <Card className="border-primary/20 bg-klp/20">
                   <CardContent className="p-8">
                     <h3 className="text-xl font-semibold mb-4">¿Listo para profundizar?</h3>
                     <p className="text-muted-foreground mb-6">
                       Continúa con el análisis de convergencia, criterios de paro y casos especiales
                     </p>
-                    <Button asChild size="lg">
+                    <Button asChild size="lg" className="bg-[#d3ff99] text-black hover:opacity-90">
                       <Link href="/teoria/avance" className="flex items-center space-x-2">
                         <span>Ir a Teoría Avanzada</span>
                         <ArrowRight className="h-4 w-4" />

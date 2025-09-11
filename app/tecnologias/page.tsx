@@ -163,8 +163,8 @@ export default function TecnologiasPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-16 px-4 text-center">
-          <div className="absolute inset-0 gradient-lime opacity-10"></div>
+        <section className="relative py-16 px-4 text-center dark:bg-black">
+          <div className="absolute inset-0 gradient-lime opacity-10 dark:hidden"></div>
           <PageContainer className="relative z-10">
             <div className="max-w-4xl mx-auto space-y-6">
               <h1 className="text-4xl md:text-5xl font-bold text-balance">Stack Tecnológico</h1>
@@ -328,17 +328,17 @@ export default function TecnologiasPage() {
 
             {/* Call to Action */}
             <div className="mt-16 text-center">
-              <Card className="bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
+              <Card className="border-primary/20 bg-klp/20">
                 <CardContent className="p-8">
                   <h3 className="text-xl font-semibold mb-4">¿Listo para explorar?</h3>
                   <p className="text-muted-foreground mb-6">
                     Descubre cómo estas tecnologías trabajan juntas para crear una experiencia educativa excepcional
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button asChild size="lg">
+                    <Button asChild size="lg" className="bg-[#d3ff99] text-black hover:opacity-90">
                       <Link href="/teoria">Comenzar con la Teoría</Link>
                     </Button>
-                    <Button asChild variant="outline" size="lg">
+                    <Button asChild variant="outline" size="lg" className="bg-transparent">
                       <Link href="/practica">Probar el Simulador</Link>
                     </Button>
                   </div>

@@ -5,11 +5,12 @@
 
 :root {
   /* KeyLimePie Custom Colors */
+  --klp: oklch(0.85 0.15 120);
   --klp-bg: #f6faf7;
   --klp-card: #ffffff;
   --klp-ink: #0d0f12;
   --klp-muted: #6b7280;
-  --klp-accent: #a3d65c;
+  --klp-accent: var(--klp);
   --klp-dark-1: #140d2d;
   --klp-dark-2: #35113d;
 
@@ -173,7 +174,20 @@
 
 /* Gradient backgrounds */
 .gradient-lime {
-  background: linear-gradient(135deg, var(--klp-accent) 0%, #8fbc8f 100%);
+  background: linear-gradient(135deg, var(--klp) 0%, #8fbc8f 100%);
+}
+
+/* KLP utilities */
+@utility bg-klp {
+  background-color: var(--klp);
+}
+
+@utility text-klp {
+  color: var(--klp);
+}
+
+@utility border-klp {
+  border-color: var(--klp);
 }
 
 /* Animation utilities */

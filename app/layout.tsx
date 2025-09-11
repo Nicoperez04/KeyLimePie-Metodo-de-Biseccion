@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 // import { Analytics } from "@vercel/analytics/next"
-// import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider"
 import { Suspense } from "react"
 import "./globals.css"
 
@@ -25,13 +25,13 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.jpg" />
+        <link rel="icon" href="/logo.png" />
       </head>
       <body className={`font-sans ${inter.variable} antialiased`}>
         <Suspense>
-          {/* <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange> */}
-          {children}
-          {/* </ThemeProvider> */}
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
         </Suspense>
         {/* <Analytics /> */}
       </body>

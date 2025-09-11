@@ -14,8 +14,8 @@ export default function EjerciciosPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-16 px-4 text-center">
-          <div className="absolute inset-0 gradient-lime opacity-10"></div>
+        <section className="relative py-16 px-4 text-center dark:bg-black">
+          <div className="absolute inset-0 gradient-lime opacity-10 dark:hidden"></div>
           <PageContainer className="relative z-10">
             <div className="max-w-4xl mx-auto space-y-6">
               <h1 className="text-4xl md:text-5xl font-bold text-balance">Ejercicios y Autoevaluación</h1>
@@ -60,7 +60,6 @@ export default function EjerciciosPage() {
                     <QuizMCQ />
                   </TabsContent>
 
-                  {/* Solve and Validate Exercises */}
                   <TabsContent value="exercises" className="space-y-6">
                     <div className="text-center space-y-2">
                       <h2 className="text-2xl font-bold">Resolver y Validar</h2>

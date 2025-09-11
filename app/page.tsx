@@ -13,11 +13,11 @@ export default function HomePage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-20 px-4 text-center">
-          <div className="absolute inset-0 gradient-lime opacity-10"></div>
+        <section className="relative py-20 px-4 text-center dark:bg-black">
+          <div className="absolute inset-0 gradient-lime opacity-10 dark:hidden"></div>
           <PageContainer className="relative z-10">
             <div className="max-w-4xl mx-auto space-y-6">
-              <h1 className="text-4xl md:text-6xl font-bold text-balance">Método de Bisección</h1>
+              <h1 className="text-4xl md:text-6xl font-bold text-balance dark:text-white">Método de Bisección</h1>
               <p className="text-xl md:text-2xl text-muted-foreground text-balance">
                 Encontrar raíces con un método robusto y simple
               </p>
@@ -27,7 +27,7 @@ export default function HomePage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-                <Button asChild size="lg" className="text-lg px-8">
+                <Button asChild size="lg" className="text-lg px-8 bg-klp text-black hover:opacity-90">
                   <Link href="/teoria" className="flex items-center space-x-2">
                     <BookOpen className="h-5 w-5" />
                     <span>Ir a Teoría</span>
