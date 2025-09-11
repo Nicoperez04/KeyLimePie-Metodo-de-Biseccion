@@ -17,6 +17,19 @@ export interface BisectionResult {
 }
 
 export class BisectionEngine {
+  private normalizeExpr(fx: string): string {
+  return fx
+    .replace(/\^/g, '**')                                // potencia
+    .replace(/\b(sin|cos|tan|sqrt|log)\s*\(/g, 'Math.$1('); // funciones
+}
+
+  private evalAt(fx: string, x: number): number {
+  const expr = this.normalizeExpr(fx).replace(/\bx\b/g, `(${x})`); // <<< clave
+  // si usás PI/E:
+  // return Function('"use strict"; const {sin,cos,tan,sqrt,log,PI,E}=Math; return (' + expr + ');')();
+  return Function('"use strict"; return (' + expr + ');')();
+}
+
   private parseFunction(fx: string): (x: number) => number {
     // Simple function parser - in production, use mathjs
     const cleanFx = fx.toLowerCase().replace(/\s/g, "")
@@ -47,8 +60,8 @@ export class BisectionEngine {
     const f = this.parseFunction(fx)
     const iterations: BisectionIteration[] = []
 
-    const fa = f(a)
-    const fb = f(b)
+    const fa = this.evalAt(fx, a);
+    const fb = this.evalAt(fx, b);
 
     // Check Bolzano condition
     if (fa * fb >= 0) {
@@ -61,7 +74,7 @@ export class BisectionEngine {
 
     while (k < maxIterations) {
       const m = (currentA + currentB) / 2
-      const fm = f(m)
+      const fm = this.evalAt(fx, m);
       const error = (currentB - currentA) / 2
 
       const iteration: BisectionIteration = {
@@ -109,8 +122,8 @@ export class BisectionEngine {
 
   checkBolzano(fx: string, a: number, b: number): { fa: number; fb: number; product: number; valid: boolean } {
     const f = this.parseFunction(fx)
-    const fa = f(a)
-    const fb = f(b)
+    const fa = this.evalAt(fx, a);
+    const fb = this.evalAt(fx, b);
     const product = fa * fb
 
     return {

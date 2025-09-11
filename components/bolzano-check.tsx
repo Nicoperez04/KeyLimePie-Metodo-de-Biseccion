@@ -64,7 +64,7 @@ export function BolzanoCheck({ fx, a, b }: BolzanoCheckProps) {
             <>
               <XCircle className="h-5 w-5 text-red-600" />
               <span>No aplica</span>
-              <Badge variant="destructive">✗</Badge>
+              <Badge variant="destructive">[ {a} , {b} ]</Badge>
             </>
           )}
         </CardTitle>
