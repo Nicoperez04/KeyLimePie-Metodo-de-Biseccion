@@ -1,15 +1,15 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { PageContainer } from "@/components/page-container"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { MathBlock } from "@/components/math-block"
-import { BookOpen, ArrowRight, Info, Target, TrendingUp } from "lucide-react"
-import Link from "next/link"
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { PageContainer } from "@/components/page-container";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { MathBlock } from "@/components/math-block";
+import { BookOpen, ArrowRight, Info, Target, TrendingUp } from "lucide-react";
+import Link from "next/link";
 
 export default function TeoriaPage() {
   return (
@@ -38,7 +38,7 @@ export default function TeoriaPage() {
           <PageContainer>
             <div className="max-w-4xl mx-auto">
               <Accordion type="multiple" className="space-y-4" defaultValue={["raiz"]}>
-                {/* Raíz de una función */}
+                {/* 1. Raíz de una función */}
                 <AccordionItem value="raiz" className="border rounded-2xl px-6">
                   <AccordionTrigger className="text-left">
                     <div className="flex items-center space-x-3">
@@ -46,54 +46,76 @@ export default function TeoriaPage() {
                       <span className="text-lg font-semibold">Raíz de una función</span>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="space-y-4 pt-4">
-                    <Card className="bg-muted/30">
-                      <CardHeader>
-                        <CardTitle className="text-lg">Definición</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="mb-4">
-                          Una raíz de una función f(x) es un valor{" "}
-                          <TooltipProvider>
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <span className="font-mono bg-muted px-2 py-1 rounded cursor-help">x_i</span>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>Valor de x donde la función se hace cero</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>{" "}
-                          tal que:
-                        </p>
-                        <div className="bg-background border rounded-lg p-4 text-center">
-                          <MathBlock display>f(x_i) = 0</MathBlock>
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <AccordionContent className="space-y-6 pt-4">
+                    <div className="grid md:grid-cols-2 gap-8 items-start">
+                      {/* Columna Izquierda: La Definición Formal */}
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-semibold text-center">La Definición Formal</h3>
+                        <Card className="bg-muted/30 h-full">
+                          <CardHeader>
+                            <CardTitle>¿Qué es una raíz?</CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-4">
+                            <p>
+                              Una raíz (o cero) de una función f(x) es un valor{" "}
+                              <span className="font-mono bg-muted px-2 py-1 rounded">p</span> en el dominio de f tal que la función evaluada en ese punto es igual a cero:
+                            </p>
+                            <div className="bg-background border rounded-lg p-4 text-center">
+                              <MathBlock display>{"f(p) = 0"}</MathBlock>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
 
-                    <div className="space-y-3">
-                      <h4 className="font-semibold">Ejemplos:</h4>
-                      <ul className="space-y-2 ml-4">
-                        <li className="flex items-start space-x-2">
-                          <span className="text-primary">•</span>
-                          <span>
-                            Polinomios: <MathBlock>{"x^2 - 2 = 0"}</MathBlock> tiene raíces en{" "}
-                            <MathBlock>{"x = \\pm\\sqrt{2}"}</MathBlock>
-                          </span>
-                        </li>
-                        <li className="flex items-start space-x-2">
-                          <span className="text-primary">•</span>
-                          <span>
-                            Ecuaciones implícitas: <MathBlock>{"\\tan(x) - x = 0"}</MathBlock>
-                          </span>
-                        </li>
-                      </ul>
+                      {/* Columna Derecha: La Interpretación Gráfica */}
+                      <div className="space-y-4">
+                          <h3 className="text-lg font-semibold text-center">La Interpretación Gráfica</h3>
+                          <Card className="border-primary/20 bg-primary/5 h-full">
+                              <CardHeader>
+                                  <CardTitle>¿Cómo se ve una raíz?</CardTitle>
+                              </CardHeader>
+                              <CardContent className="space-y-4">
+                                  <p>
+                                      Imagina que dibujas la función en un plano cartesiano. Las raíces son, simplemente, los puntos donde la línea de la función <span className="font-bold text-primary">corta o toca el eje horizontal (el eje X)</span>.
+                                  </p>
+                                  <p className="text-sm text-muted-foreground">
+                                      En esos puntos de cruce, la "altura" de la función (el valor de 'y' o f(x)) es exactamente cero.
+                                  </p>
+                              </CardContent>
+                          </Card>
+                      </div>
                     </div>
+                    <Alert>
+                      <Info className="h-4 w-4" />
+                      <AlertDescription>
+                        <strong>Idea Clave:</strong> Encontrar la raíz de <MathBlock>{"f(x)"}</MathBlock> es lo mismo que resolver la ecuación <MathBlock>{"f(x) = 0."}</MathBlock>
+                      </AlertDescription>
+                    </Alert>
+                    <Card>
+                        <CardHeader>
+                          <CardTitle className="text-lg">Ejemplos Prácticos</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <ul className="space-y-3 ml-4">
+                              <li className="flex items-start space-x-2">
+                                <span className="text-primary mt-1">•</span>
+                                <span>
+                                  Para la función <MathBlock>{"f(x) = x^2 - 4"}</MathBlock>, las raíces son <MathBlock>{"p = 2"}</MathBlock> y <MathBlock>{"p = -2"}</MathBlock>.
+                                </span>
+                              </li>
+                              <li className="flex items-start space-x-2">
+                                <span className="text-primary mt-1">•</span>
+                                <span>
+                                  En la función <MathBlock>{"g(x) = \\cos(x)"}</MathBlock>, una raíz es <MathBlock>{"p = \\frac{\\pi}{2}"}</MathBlock>.
+                                </span>
+                              </li>
+                            </ul>
+                        </CardContent>
+                    </Card>
                   </AccordionContent>
                 </AccordionItem>
 
-                {/* Continuidad */}
+                {/* 2. Continuidad */}
                 <AccordionItem value="continuidad" className="border rounded-2xl px-6">
                   <AccordionTrigger className="text-left">
                     <div className="flex items-center space-x-3">
@@ -102,8 +124,9 @@ export default function TeoriaPage() {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="space-y-4 pt-4">
-                    <p>Una función f(x) es continua en un punto x = a si se cumplen tres condiciones:</p>
-
+                    <p className="text-muted-foreground">
+                      Intuitivamente, una función es continua si puedes dibujar su gráfica completa sin levantar el lápiz del papel. Formalmente, se deben cumplir tres condiciones en un punto x = a:
+                    </p>
                     <div className="grid md:grid-cols-3 gap-4">
                       <Card className="bg-muted/30">
                         <CardHeader className="pb-3">
@@ -111,12 +134,11 @@ export default function TeoriaPage() {
                         </CardHeader>
                         <CardContent>
                           <div className="text-center">
-                            <MathBlock display>f(a)</MathBlock>
+                            <MathBlock display>{"f(a)"}</MathBlock>
                             <p className="text-sm text-muted-foreground mt-2">existe</p>
                           </div>
                         </CardContent>
                       </Card>
-
                       <Card className="bg-muted/30">
                         <CardHeader className="pb-3">
                           <CardTitle className="text-base">2. Límite</CardTitle>
@@ -128,7 +150,6 @@ export default function TeoriaPage() {
                           </div>
                         </CardContent>
                       </Card>
-
                       <Card className="bg-muted/30">
                         <CardHeader className="pb-3">
                           <CardTitle className="text-base">3. Coincidencia</CardTitle>
@@ -144,7 +165,7 @@ export default function TeoriaPage() {
                   </AccordionContent>
                 </AccordionItem>
 
-                {/* Teorema de Bolzano */}
+                {/* 3. Teorema de Bolzano */}
                 <AccordionItem value="bolzano" className="border rounded-2xl px-6">
                   <AccordionTrigger className="text-left">
                     <div className="flex items-center space-x-3">
@@ -161,120 +182,85 @@ export default function TeoriaPage() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-4">
-                        <p>Si f es continua en [a,b] y:</p>
+                        <p>Si f es continua en [a,b] y sus valores en los extremos tienen signos opuestos:</p>
                         <div className="bg-background border rounded-lg p-4 text-center">
-                          <MathBlock display>f(a) \cdot f(b) &lt; 0</MathBlock>
+                          <MathBlock display>{"f(a) \\cdot f(b) < 0"}</MathBlock>
                         </div>
-                        <p>Entonces existe p ∈ (a,b) tal que:</p>
+                        <p>Entonces, se garantiza que existe al menos una raíz p en el intervalo (a,b) tal que:</p>
                         <div className="bg-background border rounded-lg p-4 text-center">
-                          <MathBlock display>f(p) = 0</MathBlock>
+                          <MathBlock display>{"f(p) = 0"}</MathBlock>
                         </div>
                       </CardContent>
                     </Card>
-
                     <Alert>
                       <Info className="h-4 w-4" />
                       <AlertDescription>
-                        <strong>Precondición clave:</strong> Este teorema es la base fundamental que permite aplicar el
-                        método de bisección. Sin el cambio de signo <MathBlock>{"f(a) \\cdot f(b) < 0"}</MathBlock>, no
-                        podemos garantizar la existencia de una raíz en el intervalo.
+                        <strong>Precondición clave:</strong> Este teorema es la base del método de bisección. Sin el cambio de signo, no podemos asegurar que exista una raíz.
                       </AlertDescription>
                     </Alert>
                   </AccordionContent>
                 </AccordionItem>
-
-                {/* Método de Bisección - Idea */}
+                
+                {/* 4. Método de Bisección - Idea */}
                 <AccordionItem value="idea" className="border rounded-2xl px-6">
                   <AccordionTrigger className="text-left">
                     <div className="flex items-center space-x-3">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span className="text-lg font-semibold">Método de Bisección — Idea</span>
+                      <span className="text-lg font-semibold">Método de Bisección — La Idea</span>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="space-y-4 pt-4">
-                    <p>El algoritmo se basa en dividir repetidamente el intervalo por la mitad:</p>
-
-                    <div className="bg-background border rounded-lg p-6">
-                      <div className="text-center mb-4">
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <div className="inline-block cursor-help">
-                                <MathBlock display>{"m_k = \\frac{a_k + b_k}{2}"}</MathBlock>
-                              </div>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>Punto medio en la iteración k</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
-
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                          <h4 className="font-semibold text-center">Algoritmo:</h4>
-                          <ol className="space-y-2 text-sm">
-                            <li className="flex items-start space-x-2">
-                              <span className="bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                                1
-                              </span>
-                              <span>
-                                Verificar <MathBlock>{"f(a) \\cdot f(b) < 0"}</MathBlock>
-                              </span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <span className="bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                                2
-                              </span>
-                              <span>
-                                Calcular <MathBlock>{"m = \\frac{a + b}{2}"}</MathBlock>
-                              </span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <span className="bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                                3
-                              </span>
-                              <span>Evaluar f(m)</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <span className="bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                                4
-                              </span>
-                              <span>Actualizar intervalo</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <span className="bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                                5
-                              </span>
-                              <span>Repetir hasta convergencia</span>
-                            </li>
-                          </ol>
+                  <AccordionContent className="space-y-6 pt-4">
+                    <p>El algoritmo se basa en dividir repetidamente el intervalo por la mitad y quedarse con la sub-mitad que mantiene el cambio de signo.</p>
+                    <div className="text-center">
+                        <p className="mb-2">Calculamos el punto medio en cada iteración k:</p>
+                        <MathBlock display>{"m_k = \\frac{a_k + b_k}{2}"}</MathBlock>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Columna Izquierda: Algoritmo por pasos */}
+                      <div className="space-y-3">
+                        <h4 className="font-semibold text-center">Algoritmo por Pasos</h4>
+                        <div className="space-y-2">
+                          <Card className="p-3 bg-muted/30 flex items-center space-x-3">
+                            <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                            <span className="text-sm">Verificar <MathBlock>{"f(a) \\cdot f(b) < 0"}</MathBlock></span>
+                          </Card>
+                          <Card className="p-3 bg-muted/30 flex items-center space-x-3">
+                            <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                            <span className="text-sm">Calcular punto medio <MathBlock>{"m = (a + b) / 2"}</MathBlock></span>
+                          </Card>
+                          <Card className="p-3 bg-muted/30 flex items-center space-x-3">
+                            <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                            <span className="text-sm">Evaluar el signo de <MathBlock>{"f(m)"}</MathBlock></span>
+                          </Card>
+                          <Card className="p-3 bg-muted/30 flex items-center space-x-3">
+                            <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">4</span>
+                            <span className="text-sm">Actualizar el intervalo para encerrar la raíz</span>
+                          </Card>
+                          <Card className="p-3 bg-muted/30 flex items-center space-x-3">
+                            <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">5</span>
+                            <span className="text-sm">Repetir hasta alcanzar la precisión deseada</span>
+                          </Card>
                         </div>
-
-                        <div className="space-y-3">
-                          <h4 className="font-semibold text-center">Reglas de actualización:</h4>
-                          <div className="space-y-3 text-sm">
-                            <Card className="p-3 bg-muted/30">
-                              <p className="font-medium mb-2">Si sign(f(a)) = sign(f(m)):</p>
-                              <div className="text-center">
-                                <MathBlock display>a = m</MathBlock>
-                              </div>
-                            </Card>
-
-                            <Card className="p-3 bg-muted/30">
-                              <p className="font-medium mb-2">Si no:</p>
-                              <div className="text-center">
-                                <MathBlock display>b = m</MathBlock>
-                              </div>
-                            </Card>
-                          </div>
+                      </div>
+                      {/* Columna Derecha: Reglas de Actualización */}
+                      <div className="space-y-3">
+                        <h4 className="font-semibold text-center">Reglas de Actualización</h4>
+                        <div className="space-y-3 text-sm">
+                          <Card className="p-3 bg-muted/30">
+                            <p className="font-medium mb-2">Si <MathBlock>{"f(a) \\cdot f(m) < 0"}</MathBlock>:</p>
+                            <p>La raíz está en <MathBlock>{"[a, m]"}</MathBlock>, entonces <MathBlock>{"b = m"}</MathBlock></p>
+                          </Card>
+                          <Card className="p-3 bg-muted/30">
+                            <p className="font-medium mb-2">Si <MathBlock>{"f(b) \\cdot f(m) < 0"}</MathBlock>:</p>
+                            <p>La raíz está en <MathBlock>{"[m, b]"}</MathBlock>, entonces <MathBlock>{"a = m"}</MathBlock></p>
+                          </Card>
                         </div>
                       </div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-
-                {/* Error Bound */}
+                
+                {/* 5. Cota de Error */}
                 <AccordionItem value="error" className="border rounded-2xl px-6">
                   <AccordionTrigger className="text-left">
                     <div className="flex items-center space-x-3">
@@ -285,22 +271,25 @@ export default function TeoriaPage() {
                   <AccordionContent className="space-y-4 pt-4">
                     <Card className="bg-muted/30">
                       <CardHeader>
-                        <CardTitle className="text-lg">Teorema de Convergencia</CardTitle>
+                        <CardTitle className="text-lg">Convergencia Garantizada</CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="mb-4">Después de n iteraciones, el error está acotado por:</p>
+                        <p className="mb-4">Después de n iteraciones, el error (la distancia máxima a la raíz real) está acotado por:</p>
                         <div className="bg-background border rounded-lg p-4 text-center">
-                          <MathBlock display>{"|p_n - p| \\leq \\frac{b - a}{2^n}"}</MathBlock>
+                          <MathBlock display>{"|p_n - p| \\leq \\frac{b_0 - a_0}{2^n}"}</MathBlock>
                         </div>
-                        <p className="mt-4 text-sm text-muted-foreground">
-                          Donde p es la raíz exacta y p_n es la aproximación en la iteración n.
-                        </p>
+                        <Alert variant="outline" className="mt-4">
+                          <Info className="h-4 w-4" />
+                          <AlertDescription>
+                            Esta fórmula es la gran fortaleza del método: nos permite saber de antemano cuántas iteraciones necesitamos para garantizar un error tan pequeño como queramos.
+                          </AlertDescription>
+                        </Alert>
                       </CardContent>
                     </Card>
                   </AccordionContent>
                 </AccordionItem>
-
-                {/* Pros y Contras */}
+                
+                {/* 6. Pros y Contras */}
                 <AccordionItem value="pros-cons" className="border rounded-2xl px-6">
                   <AccordionTrigger className="text-left">
                     <div className="flex items-center space-x-3">
@@ -318,19 +307,19 @@ export default function TeoriaPage() {
                           <ul className="space-y-2 text-sm">
                             <li className="flex items-start space-x-2">
                               <span className="text-green-600">✓</span>
-                              <span>Siempre converge si se cumplen las condiciones</span>
+                              <span>Siempre converge si se cumplen las condiciones.</span>
                             </li>
                             <li className="flex items-start space-x-2">
                               <span className="text-green-600">✓</span>
-                              <span>Robusto y estable numéricamente</span>
+                              <span>Es robusto y estable numéricamente.</span>
                             </li>
                             <li className="flex items-start space-x-2">
                               <span className="text-green-600">✓</span>
-                              <span>Fácil de implementar</span>
+                              <span>Fácil de implementar y entender.</span>
                             </li>
                             <li className="flex items-start space-x-2">
                               <span className="text-green-600">✓</span>
-                              <span>Error predecible y acotado</span>
+                              <span>El error está acotado y es predecible.</span>
                             </li>
                           </ul>
                         </CardContent>
@@ -344,19 +333,19 @@ export default function TeoriaPage() {
                           <ul className="space-y-2 text-sm">
                             <li className="flex items-start space-x-2">
                               <span className="text-red-600">✗</span>
-                              <span>Convergencia lenta (lineal)</span>
+                              <span>La convergencia es relativamente lenta (lineal).</span>
                             </li>
                             <li className="flex items-start space-x-2">
                               <span className="text-red-600">✗</span>
-                              <span>Requiere cambio de signo</span>
+                              <span>Requiere un intervalo inicial con cambio de signo.</span>
                             </li>
                             <li className="flex items-start space-x-2">
                               <span className="text-red-600">✗</span>
-                              <span>Solo encuentra una raíz por intervalo</span>
+                              <span>Puede descartar otras raíces fuera del intervalo.</span>
                             </li>
                             <li className="flex items-start space-x-2">
                               <span className="text-red-600">✗</span>
-                              <span>No funciona con raíces múltiples</span>
+                              <span>No es eficiente para funciones con raíces múltiples.</span>
                             </li>
                           </ul>
                         </CardContent>
@@ -390,5 +379,5 @@ export default function TeoriaPage() {
 
       <Footer />
     </div>
-  )
+  );
 }

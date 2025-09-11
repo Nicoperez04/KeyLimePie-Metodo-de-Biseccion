@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 const navigation = [
   { name: "Inicio", href: "/", icon: "🏠" },
   { name: "Teoría", href: "/teoria", icon: "📚" },
-  { name: "SIMULACIÓN", href: "/practica", icon: "🧪" },
+  { name: "Simulación", href: "/practica", icon: "🧪" },
   { name: "Ejercicios", href: "/ejercicios", icon: "❓" },
   { name: "Tecnologías", href: "/tecnologias", icon: "💻" },
 ]

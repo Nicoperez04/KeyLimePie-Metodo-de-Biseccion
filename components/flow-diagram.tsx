@@ -1,145 +1,147 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { CheckCircle, XCircle, Calculator, ArrowDown, ArrowRight } from "lucide-react"
+import React from 'react';
+import ReactFlow, { MiniMap, Controls, Background, BackgroundVariant, MarkerType } from 'reactflow';
+
+import 'reactflow/dist/style.css';
+
+// Estilos para los nodos, para que se parezcan a tu UI
+const nodeStyles = {
+  base: {
+    padding: '10px 15px',
+    borderRadius: '8px',
+    border: '1px solid var(--border)',
+    fontSize: '12px',
+    textAlign: 'center' as const,
+    minWidth: '180px',
+  },
+  input: {
+    background: 'hsl(var(--primary) / 0.1)',
+    color: 'hsl(var(--primary-foreground))',
+    borderColor: 'hsl(var(--primary) / 0.2)',
+  },
+  default: {
+    background: 'hsl(var(--card))',
+    color: 'hsl(var(--card-foreground))',
+  },
+  decision: {
+    background: 'hsl(48, 95%, 95%)',
+    color: 'hsl(36, 83%, 31%)',
+    borderColor: 'hsl(43, 96%, 86%)',
+  },
+  outputSuccess: {
+    background: 'hsl(143, 85%, 96%)',
+    color: 'hsl(140, 81%, 23%)',
+    borderColor: 'hsl(143, 76%, 86%)',
+  },
+  outputFail: {
+    background: 'hsl(0, 85%, 96%)',
+    color: 'hsl(0, 81%, 33%)',
+    borderColor: 'hsl(0, 76%, 86%)',
+  },
+};
+
+
+const initialNodes = [
+  {
+    id: '1',
+    type: 'input',
+    data: { label: 'Inicio: Definir f(x), [a,b], ε' },
+    position: { x: 250, y: 0 },
+    style: { ...nodeStyles.base, ...nodeStyles.input },
+  },
+  {
+    id: '2',
+    type: 'default',
+    data: { label: 'Verificar Teorema de Bolzano' },
+    position: { x: 250, y: 100 },
+    style: { ...nodeStyles.base, ...nodeStyles.default },
+  },
+  {
+    id: '3',
+    type: 'decision',
+    data: { label: '¿f(a) · f(b) < 0?' },
+    position: { x: 250, y: 200 },
+    style: { ...nodeStyles.base, ...nodeStyles.decision },
+  },
+  {
+    id: '4',
+    type: 'output',
+    data: { label: 'FIN: No se puede aplicar' },
+    position: { x: 500, y: 200 },
+    style: { ...nodeStyles.base, ...nodeStyles.outputFail },
+  },
+  {
+    id: '5',
+    type: 'default',
+    data: { label: 'm = (a + b) / 2' },
+    position: { x: 250, y: 325 },
+    style: { ...nodeStyles.base, ...nodeStyles.default },
+  },
+  {
+    id: '6',
+    type: 'decision',
+    data: { label: '¿(b - a) / 2 < ε?' },
+    position: { x: 250, y: 425 },
+    style: { ...nodeStyles.base, ...nodeStyles.decision },
+  },
+  {
+    id: '7',
+    type: 'output',
+    data: { label: 'FIN: Raíz ≈ m' },
+    position: { x: 250, y: 550 },
+    style: { ...nodeStyles.base, ...nodeStyles.outputSuccess },
+  },
+  {
+    id: '8',
+    type: 'decision',
+    data: { label: '¿f(a) · f(m) < 0?' },
+    position: { x: 0, y: 425 },
+    style: { ...nodeStyles.base, ...nodeStyles.decision },
+  },
+  {
+    id: '9',
+    type: 'default',
+    data: { label: 'b = m' },
+    position: { x: -150, y: 425 },
+    style: { ...nodeStyles.base, ...nodeStyles.default },
+  },
+  {
+    id: '10',
+    type: 'default',
+    data: { label: 'a = m' },
+    position: { x: 0, y: 550 },
+    style: { ...nodeStyles.base, ...nodeStyles.default },
+  },
+];
+
+const initialEdges = [
+  { id: 'e1-2', source: '1', target: '2', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e2-3', source: '2', target: '3', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e3-4', source: '3', target: '4', label: 'No', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e3-5', source: '3', target: '5', label: 'Sí', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e5-6', source: '5', target: '6', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e6-7', source: '6', target: '7', label: 'Sí', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e6-8', source: '6', target: '8', label: 'No', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e8-9', source: '8', target: '9', label: 'Sí', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e8-10', source: '8', target: '10', label: 'No', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e9-5', source: '9', target: '5', animated: true, markerEnd: { type: MarkerType.ArrowClosed }, style: { strokeDasharray: '5 5' } },
+  { id: 'e10-5', source: '10', target: '5', animated: true, markerEnd: { type: MarkerType.ArrowClosed }, style: { strokeDasharray: '5 5' } },
+];
 
 export function FlowDiagram() {
   return (
-    <div className="w-full max-w-4xl mx-auto p-4">
-      <div className="flex flex-col items-center space-y-6">
-        {/* Start */}
-        <Card className="w-64 bg-primary/10 border-primary/30">
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center space-x-2 mb-2">
-              <Calculator className="h-5 w-5 text-primary" />
-              <span className="font-semibold">Inicio</span>
-            </div>
-            <p className="text-sm text-muted-foreground">Dados f(x), a, b</p>
-          </CardContent>
-        </Card>
-
-        <ArrowDown className="h-6 w-6 text-muted-foreground" />
-
-        {/* Check Bolzano */}
-        <Card className="w-64 bg-yellow-50 dark:bg-yellow-950/20 border-yellow-200 dark:border-yellow-800">
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center space-x-2 mb-2">
-              <span className="font-semibold">¿f(a)·f(b) &lt; 0?</span>
-            </div>
-            <p className="text-sm text-muted-foreground">Verificar Bolzano</p>
-          </CardContent>
-        </Card>
-
-        <div className="flex items-center space-x-8">
-          <div className="flex flex-col items-center space-y-2">
-            <Badge variant="destructive" className="px-3 py-1">
-              NO
-            </Badge>
-            <ArrowDown className="h-4 w-4 text-muted-foreground" />
-            <Card className="w-48 bg-destructive/10 border-destructive/30">
-              <CardContent className="p-3 text-center">
-                <XCircle className="h-5 w-5 text-destructive mx-auto mb-1" />
-                <p className="text-sm font-medium">No aplicar método</p>
-                <p className="text-xs text-muted-foreground">Ajustar intervalo</p>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="flex flex-col items-center space-y-2">
-            <Badge className="px-3 py-1 bg-green-600 text-white">SÍ</Badge>
-            <ArrowDown className="h-4 w-4 text-muted-foreground" />
-            <Card className="w-48 bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-800">
-              <CardContent className="p-3 text-center">
-                <CheckCircle className="h-5 w-5 text-green-600 mx-auto mb-1" />
-                <p className="text-sm font-medium">Continuar</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        <ArrowDown className="h-6 w-6 text-muted-foreground" />
-
-        {/* Calculate m */}
-        <Card className="w-64 bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-800">
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center space-x-2 mb-2">
-              <Calculator className="h-5 w-5 text-blue-600" />
-              <span className="font-semibold">Calcular m</span>
-            </div>
-            <p className="text-sm">m = (a + b) / 2</p>
-          </CardContent>
-        </Card>
-
-        <ArrowDown className="h-6 w-6 text-muted-foreground" />
-
-        {/* Evaluate f(m) */}
-        <Card className="w-64 bg-purple-50 dark:bg-purple-950/20 border-purple-200 dark:border-purple-800">
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center space-x-2 mb-2">
-              <span className="font-semibold">Evaluar f(m)</span>
-            </div>
-            <p className="text-sm text-muted-foreground">Calcular valor de función</p>
-          </CardContent>
-        </Card>
-
-        <ArrowDown className="h-6 w-6 text-muted-foreground" />
-
-        {/* Update interval */}
-        <Card className="w-80 bg-orange-50 dark:bg-orange-950/20 border-orange-200 dark:border-orange-800">
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center space-x-2 mb-3">
-              <span className="font-semibold">Actualizar [a,b]</span>
-            </div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="bg-background border rounded p-2">
-                <p className="font-medium">Si sign(f(a)) = sign(f(m))</p>
-                <p>a ← m</p>
-              </div>
-              <div className="bg-background border rounded p-2">
-                <p className="font-medium">Si no</p>
-                <p>b ← m</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <ArrowDown className="h-6 w-6 text-muted-foreground" />
-
-        {/* Stop criteria */}
-        <Card className="w-64 bg-yellow-50 dark:bg-yellow-950/20 border-yellow-200 dark:border-yellow-800">
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center space-x-2 mb-2">
-              <span className="font-semibold">¿Criterio de paro?</span>
-            </div>
-            <p className="text-sm text-muted-foreground">e_k ≤ ε o k ≥ N</p>
-          </CardContent>
-        </Card>
-
-        <div className="flex items-center space-x-8">
-          <div className="flex flex-col items-center space-y-2">
-            <Badge variant="secondary" className="px-3 py-1">
-              NO
-            </Badge>
-            <div className="flex items-center space-x-2">
-              <ArrowRight className="h-4 w-4 text-muted-foreground rotate-180" />
-              <span className="text-sm text-muted-foreground">Repetir</span>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center space-y-2">
-            <Badge className="px-3 py-1 bg-green-600 text-white">SÍ</Badge>
-            <ArrowDown className="h-4 w-4 text-muted-foreground" />
-            <Card className="w-48 bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-800">
-              <CardContent className="p-3 text-center">
-                <CheckCircle className="h-5 w-5 text-green-600 mx-auto mb-1" />
-                <p className="text-sm font-medium">Raíz encontrada</p>
-                <p className="text-xs text-muted-foreground">raíz ≈ m ± error</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
+    <div style={{ height: '600px' }} className="w-full bg-muted/30 rounded-lg border">
+      <ReactFlow
+        nodes={initialNodes}
+        edges={initialEdges}
+        fitView
+        proOptions={{ hideAttribution: true }}
+      >
+        <Controls />
+        <MiniMap />
+        <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
+      </ReactFlow>
     </div>
-  )
+  );
 }
