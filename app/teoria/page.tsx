@@ -19,7 +19,7 @@ export default function TeoriaPage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative py-16 px-4 text-center dark:bg-black">
-          <div className="absolute inset-0 gradient-lime opacity-10 dark:hidden"></div>
+          <div className="absolute inset-0 bg-lime-600 opacity-10 dark:hidden"></div>
           <PageContainer className="relative z-10">
             <div className="max-w-4xl mx-auto space-y-6">
               <Badge variant="secondary" className="mb-4">
@@ -278,7 +278,7 @@ export default function TeoriaPage() {
                         <div className="bg-background border rounded-lg p-4 text-center">
                           <MathBlock display>{"|p_n - p| \\leq \\frac{b_0 - a_0}{2^n}"}</MathBlock>
                         </div>
-                        <Alert variant="outline" className="mt-4">
+                        <Alert variant="default" className="mt-4">
                           <Info className="h-4 w-4" />
                           <AlertDescription>
                             Esta fórmula es la gran fortaleza del método: nos permite saber de antemano cuántas iteraciones necesitamos para garantizar un error tan pequeño como queramos.

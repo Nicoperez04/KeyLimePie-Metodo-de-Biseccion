@@ -19,7 +19,7 @@ export default function TeoriaAvancePage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative py-16 px-4 text-center">
-          <div className="absolute inset-0 gradient-lime opacity-10"></div>
+          <div className="absolute inset-0 bg-lime-600 opacity-10 dark:hidden"></div>
           <PageContainer className="relative z-10">
             <div className="max-w-4xl mx-auto space-y-6">
               <Badge variant="secondary" className="mb-4">
