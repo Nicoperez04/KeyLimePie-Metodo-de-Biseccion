@@ -13,7 +13,7 @@ export default function HomePage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-20 px-4 text-center dark:bg-black">
+        <section className="relative py-10 px-4 text-center dark:bg-black">
           <div className="absolute inset-0 bg-lime-600 opacity-10 dark:hidden"></div>
           <PageContainer className="relative z-10">
             <div className="max-w-4xl mx-auto space-y-6">
@@ -47,7 +47,7 @@ export default function HomePage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-16 px-4">
+        <section className="py-4 px-4">
           <PageContainer>
             <div className="grid md:grid-cols-3 gap-8">
               <Card className="rounded-2xl border-border/40 hover:scale-[1.01] transition-transform">
