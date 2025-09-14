@@ -25,6 +25,8 @@ interface BisectionState {
   setFunction: (fx: string) => void
   setInterval: (a: number, b: number) => void
   setParameters: (epsilon: number, maxIterations: number) => void
+  setA: (a: number) => void
+  setB: (b: number) => void
   solve: () => void
   reset: () => void
   setCurrentStep: (step: number) => void
@@ -58,6 +60,8 @@ export const useBisectionStore = create<BisectionState>()(
       setInterval: (a, b) => set({ a, b, result: null, currentStep: 0 }),
 
       setParameters: (epsilon, maxIterations) => set({ epsilon, maxIterations, result: null, currentStep: 0 }),
+      setA: (a) => set({ a, result: null, currentStep: 0 }),
+      setB: (b) => set({ b, result: null, currentStep: 0 }),
 
       solve: () => {
         const { fx, a, b, epsilon, maxIterations } = get()
