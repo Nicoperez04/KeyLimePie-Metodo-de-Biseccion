@@ -21,7 +21,7 @@ const presets = [
   { name: "x² - 2", fx: "x^2 - 2", a: 1, b: 2, description: "Raíz cuadrada de 2" },
   { name: "x³ - x - 2", fx: "x^3 - x - 2", a: 1, b: 2, description: "Polinomio cúbico" },
   { name: "cos(x) - x", fx: "cos(x) - x", a: 0, b: 1, description: "Ecuación trascendente" },
-  { name: "x² (inválido)", fx: "x^2", a: -1, b: 2, description: "Sin cambio de signo" },
+  { name: "x²", fx: "x^2", a: -1, b: 2, description: "Sin cambio de signo" },
 ]
 
 export default function PracticaPage() {
