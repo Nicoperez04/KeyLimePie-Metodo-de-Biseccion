@@ -1,14 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  images: {
-    unoptimized: true,
-  },
-}
+  output: 'export',                 // genera /out
+  basePath: '/<REPO_NAME>',         // ej: '/KeyLimePie_Errores'
+  assetPrefix: '/<REPO_NAME>/',     // mismo subpath para assets
+  images: { unoptimized: true },    // requerido con export
+  trailingSlash: true               // opcional, ayuda en Pages
+};
+export default nextConfig;
 
-export default nextConfig
