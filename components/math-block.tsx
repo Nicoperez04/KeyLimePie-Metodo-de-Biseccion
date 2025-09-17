@@ -16,7 +16,6 @@ export function MathBlock({ children, display = false, className = "" }: MathBlo
       const renderMath = async () => {
         try {
           const katex = await import("katex")
-          await import("katex/dist/katex.min.css")
 
           if (ref.current) {
             katex.default.render(children, ref.current, {
